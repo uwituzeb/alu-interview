@@ -1,20 +1,16 @@
-#!/usr/bin/python3
+##!/usr/bin/python3
+"""This module returns minimum operations"""
 
-"""minimum operations"""
-import math
 
 def minOperations(n):
-    """minimum operations to get n to 1"""
-    if n <= 1:
-        return 0
-
-    operations = 0
-    for i in range(2, int(math.sqrt(abs(n))) + 1):
-        while n % 1 == 0:
-            operations += i
-            n //= i
-
+    """Returns minimum operations to result in n characters in a text file"""
+    total_ops = []
+    step = 2
+    while step * step <= n:
+        while n % step == 0:
+            n /= step
+            total_ops.append(int(step))
+        step += 1
     if n > 1:
-        operations += n
-
-    return operations
+        total_ops.append(int(n))
+    return sum(total_ops)
